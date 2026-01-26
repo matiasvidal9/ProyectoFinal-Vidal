@@ -6,9 +6,14 @@
     padding: 0 5%;
     background-color: var(--bg-color);
     border-bottom: 1px solid #eeeeee;
-    position: sticky; 
+    position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.navbar-logo {
+    text-decoration: none; 
+    color: var(--primary-color);
 }
 
 .navbar-logo h1 {
@@ -16,23 +21,25 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     font-weight: 800;
-    color: var(--primary-color);
+    margin: 0;
 }
 
 .navbar-links {
     display: flex;
     list-style: none;
     gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
-
 
 .navbar-links a {
     text-decoration: none;
     color: var(--primary-color);
     font-size: 0.9rem;
     font-weight: 500;
+    text-transform: uppercase; 
     transition: 0.3s;
-    font-family: 'Inter', sans-serif; 
 }
 
 .navbar-links a:hover {
@@ -40,6 +47,6 @@
 }
 
 .navbar-links .active {
-    color: var(--text-secondary);
+    font-weight: 700;
     border-bottom: 2px solid var(--primary-color);
 }

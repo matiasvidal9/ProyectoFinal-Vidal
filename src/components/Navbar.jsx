@@ -1,18 +1,21 @@
+import { NavLink, Link } from "react-router-dom";
 import "../css/Navbar.css";
 import CartWidget from "./CartWidget";
 
-const Navbar = () => { 
+const Navbar = () => {
     return (
         <nav className="navbar">
-            <div className="navbar-logo">
-                <h1>LOOk</h1>
-            </div>
+            {/* Usamos navbar-logo para que coincida con tu CSS */}
+            <Link to="/" className="navbar-logo">
+                <h1>look</h1>
+            </Link>
+
             <ul className="navbar-links">
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Accessories</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><NavLink to="/category/men">Men</NavLink></li>
+                <li><NavLink to="/category/women">Women</NavLink></li>
+                <li><NavLink to="/category/accessories">Accessories</NavLink></li>
             </ul>
+
             <CartWidget />
         </nav>
     );
