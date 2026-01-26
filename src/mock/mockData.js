@@ -15,7 +15,6 @@ export const getProducts = () => {
 export const getProductById = (productId) => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            // Buscamos el producto que coincida con el ID solicitado
             const product = products.find(prod => prod.id === parseInt(productId));
             resolve(product);
         }, 1500);
