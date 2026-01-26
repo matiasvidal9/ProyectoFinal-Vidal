@@ -1,19 +1,21 @@
 .navbar {
     height: 80px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    /* Tres columnas: las de los lados ocupan el mismo espacio (1fr), la del medio se ajusta al texto (auto) */
+    grid-template-columns: 1fr auto 1fr; 
     align-items: center;
     padding: 0 5%;
-    background-color: var(--bg-color);
+    background-color: #ffffff !important; /* Blanco sólido para que no sea transparente */
     border-bottom: 1px solid #eeeeee;
-    position: sticky;
+    position: sticky; /* Se queda arriba sin romper el resto del diseño */
     top: 0;
     z-index: 1000;
 }
 
 .navbar-logo {
     text-decoration: none; 
-    color: var(--primary-color);
+    color: #000000;
+    justify-self: start; /* Alinea el logo a la izquierda de su columna */
 }
 
 .navbar-logo h1 {
@@ -30,12 +32,17 @@
     gap: 30px;
     margin: 0;
     padding: 0;
-    align-items: center;
+    justify-content: center; /* Centra los links en la columna central */
+}
+
+/* Contenedor para el carrito para que ocupe el lado derecho */
+.cart-container {
+    justify-self: end; /* Alinea el carrito a la derecha de su columna */
 }
 
 .navbar-links a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: #000000;
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase; 
@@ -43,10 +50,10 @@
 }
 
 .navbar-links a:hover {
-    color: var(--text-secondary);
+    color: #666666;
 }
 
 .navbar-links .active {
     font-weight: 700;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid #000000;
 }

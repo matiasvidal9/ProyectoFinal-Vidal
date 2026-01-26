@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 :root {
   --primary-color: #000000;
   --bg-color: #ffffff;
@@ -10,5 +8,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif !important;
+  /* Helvetica como prioridad, Arial como respaldo */
+  font-family: 'Helvetica', 'Arial', sans-serif !important;
+}
+
+/* Quitamos cualquier padding excesivo que hayamos puesto antes en el body */
+body {
+    padding-top: 0; 
 }
