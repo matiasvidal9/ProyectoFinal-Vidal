@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../mock/mockData"; 
+import { getProductById } from "../mock/mockData";
+import ItemDetail from "./ItemDetail"; 
+
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState(null);
+    const [item, setItem] = useState(null);
     const { id } = useParams(); 
 
     useEffect(() => {
-        getProductById(id).then(res => setProduct(res));
+        getProductById(id).then((res) => setItem(res));
     }, [id]);
 
-    if (!product) return <p>Cargando producto...</p>;
+    if (!item) return <div className="loading">Cargando detalles del producto...</div>;
 
     return (
-        <div className="detail-container">
-            <h1>{product.name}</h1>
-            <img src={product.img} alt={product.name} style={{width: '300px'}} />
-            <p>Precio: ${product.price}</p>
-            <p>Stock disponible: {product.stock}</p>
-        </div>
+        <section className="detail-container">
+            <ItemDetail item={item} />
+        </section>
     );
 };
 
