@@ -6,11 +6,10 @@ import { BsCart4 } from "react-icons/bs";
 const CartWidget = () => {
     const { totalQuantity } = useContext(CartContext);
     return (
-        <div className="cart-widget">
-            <span className="cart-icon"><BsCart4 /></span>
-            <span className="cart-notification">{totalQuantity}</span> 
-            <Link to="/cart" className="CartWidget"> ... </Link>
-        </div>
+        <Link to="/cart" className="CartWidget">
+            <span style={{fontSize: '20px'}}>🛒</span> 
+            <span className="CartBadge">{totalQuantity()}</span>
+        </Link>
     );
 };
 
