@@ -1,22 +1,34 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getProductById } from "../mock/mockData";
+import { useParams } from "react-router-dom"; 
+import { getProducts } from "../mock/mockData";
 import ItemDetail from "./ItemDetail"; 
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState(null);
-    const { id } = useParams(); 
+    const [loading, setLoading] = useState(true);
+    const { itemId } = useParams(); 
 
     useEffect(() => {
-        getProductById(id).then((res) => setItem(res));
-    }, [id]);
+        setLoading(true);
+        
+        getProducts()
+            .then(res => {
+                const productFound = res.find(prod => prod.id === parseInt(itemId));
+                setItem(productFound);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [itemId]); 
 
-    if (!item) return <div className="loading">Cargando detalles del producto...</div>;
+    if (loading) {
+        return <h2 style={{textAlign: 'center', marginTop: '50px'}}>Cargando detalle...</h2>;
+    }
 
     return (
-        <section className="detail-container">
+        <div className="item-detail-container">
             <ItemDetail item={item} />
-        </section>
+        </div>
     );
 };
 
