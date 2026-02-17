@@ -3,13 +3,15 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero'; 
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route 
+      <CartProvider>
+        <Navbar />
+        <Routes>
+          <Route 
             path="/" 
             element={
                 <>
@@ -17,11 +19,13 @@ function App() {
                     <ItemListContainer greeting="Bienvenidos a LOOk" />
                 </>
             } 
-        />
-        <Route path="/category/:id" element={<ItemListContainer />} />
-        <Route path="/item/:id" element={<ItemDetailContainer />} />
-        <Route path="*" element={<h1>404 - No encontrado</h1>} />
-      </Routes>
+          />
+          <Route path="/category/:id" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+          <Route path="*" element={<h1>404 - No encontrado</h1>} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   );
 }
