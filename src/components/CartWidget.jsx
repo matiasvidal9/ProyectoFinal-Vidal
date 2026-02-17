@@ -9,6 +9,7 @@ const CartWidget = () => {
         <div className="cart-widget">
             <span className="cart-icon"><BsCart4 /></span>
             <span className="cart-notification">{totalQuantity}</span> 
+            <Link to="/cart" className="CartWidget"> ... </Link>
         </div>
     );
 };
