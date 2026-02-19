@@ -9,17 +9,16 @@ const ItemDetailContainer = () => {
     const { itemId } = useParams(); 
 
     useEffect(() => {
-        setLoading(true);
-        
-        getProducts()
-            .then(res => {
-                const productFound = res.find(prod => prod.id === parseInt(itemId));
-                setItem(productFound);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [itemId]); 
+    setLoading(true);
+    
+    getProductById(itemId)
+        .then(res => {
+            setItem(res);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+}, [itemId]);
 
     if (loading) {
         return <h2 style={{textAlign: 'center', marginTop: '50px'}}>Cargando detalle...</h2>;

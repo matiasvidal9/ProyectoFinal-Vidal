@@ -9,9 +9,9 @@ const Navbar = () => {
                 <h1>look</h1>
             </Link>
             <ul className="navbar-links">
-                <li><NavLink to="/category/men">Men</NavLink></li>
-                <li><NavLink to="/category/women">Women</NavLink></li>
-                <li><NavLink to="/category/accessories">Accessories</NavLink></li>
+                <li><NavLink to="/category/Men">Men</NavLink></li>
+                <li><NavLink to="/category/Women">Women</NavLink></li>
+                <li><NavLink to="/category/Accessories">Accessories</NavLink></li>
             </ul>
             <div className="cart-container">
                 <CartWidget />

@@ -2,6 +2,25 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../mock/mockData";
 import ItemList from "./ItemList";
+import { db } from "../services/config"; // Tu archivo de config
+import { collection, addDoc } from "firebase/firestore";
+import { products } from "../mock/mockData"; // Tu array actual
+
+const uploadBatch = () => {
+    const itemsCollection = collection(db, "items");
+
+    products.forEach((prod) => {
+        // Quitamos el ID manual del mock porque Firebase genera uno propio
+        const { id, ...dataWithoutId } = prod; 
+        addDoc(itemsCollection, dataWithoutId)
+            .then((docRef) => {
+                console.log("Producto subido con ID: ", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error al subir: ", error);
+            });
+    });
+};
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -36,3 +55,4 @@ const ItemListContainer = () => {
     );
 };
 export default ItemListContainer;
+export { uploadBatch };
