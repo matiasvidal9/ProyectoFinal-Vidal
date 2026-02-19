@@ -30,18 +30,9 @@ const ItemListContainer = () => {
         return <h2 style={{textAlign: 'center', marginTop: '50px'}}>Cargando productos...</h2>;
     }
 
-    const subirData = () => {
-        console.log("Subiendo data a Firebase...");
-        // Aquí podrías llamar a una función que suba los productos a Firebase
-        const colASubir = collection(db, "products");
-        products.map((prod) => 
-            addDoc(colASubir, prod))
-        }
-
     return (
         <div className="item-list-container">
             <ItemList products={products} />
-            <button onClick={subirData}>SUBIR DATA</button>
         </div>
     );
 };
