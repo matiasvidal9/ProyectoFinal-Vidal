@@ -2,25 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../mock/mockData";
 import ItemList from "./ItemList";
-import { db } from "../services/config"; // Tu archivo de config
-import { collection, addDoc } from "firebase/firestore";
-import { products } from "../mock/mockData"; // Tu array actual
-
-const uploadBatch = () => {
-    const itemsCollection = collection(db, "items");
-
-    products.forEach((prod) => {
-        // Quitamos el ID manual del mock porque Firebase genera uno propio
-        const { id, ...dataWithoutId } = prod; 
-        addDoc(itemsCollection, dataWithoutId)
-            .then((docRef) => {
-                console.log("Producto subido con ID: ", docRef.id);
-            })
-            .catch((error) => {
-                console.error("Error al subir: ", error);
-            });
-    });
-};
+import { collection } from "firebase/firestore";
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -48,11 +30,19 @@ const ItemListContainer = () => {
         return <h2 style={{textAlign: 'center', marginTop: '50px'}}>Cargando productos...</h2>;
     }
 
+    const subirData = () => {
+        console.log("Subiendo data a Firebase...");
+        // Aquí podrías llamar a una función que suba los productos a Firebase
+        const colASubir = collection(db, "products");
+        products.map((prod) => 
+            addDoc(colASubir, prod))
+        }
+
     return (
         <div className="item-list-container">
             <ItemList products={products} />
+            <button onClick={subirData}>SUBIR DATA</button>
         </div>
     );
 };
 export default ItemListContainer;
-export { uploadBatch };
