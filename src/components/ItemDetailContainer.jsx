@@ -27,8 +27,6 @@ const ItemDetailContainer = () => {
 
     if (loading) return <div className="container"><h3>Cargando detalle...</h3></div>;
 
-    if (!item) return <div className="container"><h3>Producto no encontrado</h3></div>;
-
     return (
         <div className="item-detail-container">
             <ItemDetail item={item} />

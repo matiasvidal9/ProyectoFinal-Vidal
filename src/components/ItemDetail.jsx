@@ -5,11 +5,16 @@ import { CartContext } from "../context/CartContext";
 import "../css/ItemDetail.css";
 
 const ItemDetail = ({ item }) => {
-    // IMPORTANTE: Si item no existe todavía, no renderizamos nada para evitar el error
-    if (!item) return null;
+    const [isInCart, setIsInCart] = useState(false);
+    const { addItem } = useContext(CartContext);
+
+    if (!item || Object.keys(item).length === 0) {
+        return <h2 className="Loading">Cargando producto...</h2>;
+    }
 
     const onAdd = (quantity) => {
-        console.log(`Agregado al carrito: ${quantity} unidades de ${item.name}`);
+        setIsInCart(true);
+        addItem(item, quantity);
     };
 
     return (
@@ -26,7 +31,13 @@ const ItemDetail = ({ item }) => {
                 <p className="Info">Precio: ${item.price}</p>
             </section>
             <footer className="ItemFooter">
-                <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+                {
+                    isInCart ? (
+                        <Link to='/cart' className='Option'>Finalizar Compra</Link>
+                    ) : (
+                        <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+                    )
+                }
             </footer>
         </article>
     );

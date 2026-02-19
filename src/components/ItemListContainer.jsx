@@ -13,7 +13,6 @@ const ItemListContainer = () => {
         const db = getFirestore();
         const itemsCollection = collection(db, "productos");
 
-        // Lógica de filtrado según la rúbrica (Uso de query y where)
         const q = categoryId 
             ? query(itemsCollection, where("category", "==", categoryId)) 
             : itemsCollection;
